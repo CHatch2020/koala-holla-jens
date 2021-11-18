@@ -1,11 +1,10 @@
 console.log( 'js' );
 
 $( document ).ready( function(){
-  console.log( 'JQ' );
-  // Establish Click Listeners
-  setupClickListeners();
+  console.log( 'JQ' ); 
   // load existing koalas on page load
   getKoalas();
+    // TODO make sure to add class delete-btn, to the remove button.
   $('#viewKoalas').on('click', '.delete-btn', deleteKoala);
   $('#viewKoalas').on('click', '.update-btn', updateKoala);
   $('#addButton').on('click', saveKoala);
@@ -21,14 +20,13 @@ function clearInputs(){
   $('#notesIn').val('');
 }
 
-
 function getKoalas(){ 
   console.log( 'in getKoalas' );
   $.ajax({
     type: 'GET',
     url: '/koalas'
   }).then((response) => {
-    $("#viewKoalas").empty();
+    $('#viewKoalas').empty();
     console.log("GET /koalas response", response);
     for (let koala of response) {
       $('#viewKoalas').append(`
@@ -39,7 +37,7 @@ function getKoalas(){
         <td>${koala.readyForTransfer}</td>
         <td>${koala.notes}</td>
         <td>
-          <button class="ready-for-transfer-btn">Ready for Transfer</button>
+          <button class="update-btn" data-id="${koala.id}">Ready for Transfer</button>
         </td>
         <td>
           <button class="delete-btn" data-id="${koala.id}">delete</button>
@@ -81,6 +79,7 @@ function deleteKoala( newKoala ){
   }).then(function(response) {
     console.log('response', response);
     // TODO refreshKoalas(); 
+    getKoalas();
   }).catch(function(error) {
     console.log('error: ', error);
   });
@@ -94,7 +93,7 @@ function updateKoala(){
     url: `/koalas/${update}`
   }).then((res) => {
     console.log(res);
-    //will be the get function
+    getKoalas();
   }).catch((err) => {
     console.log(err);
   })

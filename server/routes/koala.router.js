@@ -8,7 +8,7 @@ const pool = require('../modules/pool');
 // GET
 koalaRouter.get('/', (req, res) => {
     console.log('GET /koalas');
-    const sqlText = 'SELECT * FROM koalas;';
+    const sqlText = 'SELECT * FROM "koalas";';
     pool.query(sqlText)
     .then((dbResult) => {
         console.log(`${dbResult.rows.length} rows to send.`)
