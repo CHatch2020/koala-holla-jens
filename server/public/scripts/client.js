@@ -33,8 +33,23 @@ function getKoalas(){
   
 } // end getKoalas
 
-function saveKoala( newKoala ){
-  console.log( 'in saveKoala', newKoala );
-  // ajax call to server to get koalas
- 
+function saveKoala(){
+  console.log( 'in saveKoala' );
+  let newKoala = {
+    name: $('#nameIn').val(),
+    age: $('#ageIn').val(),
+    gender: $('#genderIn').val(),
+    readyToTransfer: $('#readyToTransferIn').val(),
+    notes: $('#notesIn').val()
+  }
+  $.ajax({
+    type: 'POST',
+    url: '/koalas',
+    data: newKoala
+  }).then((response) => {
+    console.log('POST /koalas succeeded')
+    clearInputs();
+    getKoalas();
+  });
+
 }
