@@ -9,8 +9,6 @@ CREATE TABLE "koalas" (
 	"notes" VARCHAR (100)
 );
 
-
-
 INSERT INTO "koalas" 
 	("name", "gender", "age", "ready_to_transfer", "notes") 
 VALUES 
