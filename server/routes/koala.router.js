@@ -1,5 +1,6 @@
 const express = require('express');
 const koalaRouter = express.Router();
+const pool = require('../modules/pool');
 
 // DB CONNECTION
 
@@ -59,5 +60,24 @@ koalaRouter.put('/:id', (req, res) => {
 })
 
 // DELETE
+// Bennett was here
+koalaRouter.delete('/:id', (req, res) => {
+  console.log('req.params:', req.params);
+  const koalaId = req.params.id;
+  const sqlText = `
+    DELETE FROM "koalas"
+      WHERE "id"=$1;
+  `;
+  const sqlValues = [ koalaId ];
+
+  pool.query(sqlText, sqlValues)
+    .then((dbResult) => {
+      res.sendStatus(200);
+    })
+    .catch((dbErr) => {
+      console.error(dbErr);
+      res.sendStatus(500);
+    })
+});
 
 module.exports = koalaRouter;

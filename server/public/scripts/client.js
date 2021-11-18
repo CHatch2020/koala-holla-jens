@@ -8,28 +8,23 @@ $( document ).ready( function(){
   getKoalas();
 
   // Adds a click listener to detect when delete button is clicked.
+
     // TODO make sure to add class delete-btn, to the remove button.
   $('#viewKoalas').on('click', '.delete-btn', deleteKoala);
   $('#viewKoalas').on('click', '.update-btn', updateKoala);
+
+  // TODO make sure to add class delete-btn, to the remove button.
+  $('#addButton').on('click', saveKoala)
+
 }); // end doc ready
 
-function setupClickListeners() {
-  $( '#addButton' ).on( 'click', function(){
-    console.log( 'in addButton on click' );
-    // get user input and put in an object
-    // NOT WORKING YET :(
-    // using a test object
-    let koalaToSend = {
-      name: $('#nameIn').val(),
-      age: $('#ageIn').val(),
-      gender: $('#genderIn').val(),
-      readyForTransfer: $('#readyForTransferIn').val(),
-      notes: $('#notesIn').val(),
-    };
-    // call saveKoala with the new obejct
-    saveKoala( koalaToSend );
-    clearInputs();
-  }); 
+// clear koalaInputs
+function clearInputs(){
+  $('#nameIn').val('');
+  $('#ageIn').val('');
+  $('#genderIn').val('');
+  $('#readyForTransferIn').val('');
+  $('#notesIn').val('');
 }
 
 // clear koalaInputs
@@ -47,10 +42,25 @@ function getKoalas(){
   
 } // end getKoalas
 
-function saveKoala( newKoala ){
-  console.log( 'in saveKoala', newKoala );
-  // ajax call to server to get koalas
- 
+function saveKoala(){
+  console.log( 'in saveKoala' );
+  let newKoala = {
+    name: $('#nameIn').val(),
+    age: $('#ageIn').val(),
+    gender: $('#genderIn').val(),
+    readyToTransfer: $('#readyToTransferIn').val(),
+    notes: $('#notesIn').val()
+  }
+  $.ajax({
+    type: 'POST',
+    url: '/koalas',
+    data: newKoala
+  }).then((response) => {
+    console.log('POST /koalas succeeded')
+    clearInputs();
+    getKoalas();
+  });
+
 }
 
 function deleteKoala( newKoala ){
@@ -63,7 +73,7 @@ function deleteKoala( newKoala ){
   }).then(function(response) {
     console.log('response', response);
     // TODO refreshKoalas(); 
-  }).catch(function(error){
+  }).catch(function(error) {
     console.log('error: ', error);
   });
 }; // end deleteKoala
