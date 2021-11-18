@@ -31,11 +31,33 @@ function clearInputs(){
   $('#notesIn').val('');
 }
 
-function getKoalas(){
+function getKoalas(){ 
   console.log( 'in getKoalas' );
-  // ajax call to server to get koalas
-  
-} // end getKoalas
+  $.ajax({
+    type: 'GET',
+    url: '/koalas'
+  }).then((response) => {
+    $("#viewKoalas").empty();
+    console.log("GET /koalas response", response);
+    for (let koala of response) {
+      $('#viewKoalas').append(`
+      <tr>
+        <td>${koala.name}</td>
+        <td>${koala.age}</td>
+        <td>${koala.gender}</td>
+        <td>${koala.readyForTransfer}</td>
+        <td>${koala.notes}</td>
+        <td>
+          <button class="ready-for-transfer-btn">Ready for Transfer</button>
+        </td>
+        <td>
+          <button class="delete-btn">delete</button>
+        </td>
+      </tr>
+      `);
+    }
+  });
+}
 
 function saveKoala(){
   console.log( 'in saveKoala' );

@@ -6,7 +6,19 @@ const pool = require('../modules/pool');
 
 
 // GET
-
+koalaRouter.get('/', (req, res) => {
+    console.log('GET /koalas');
+    const sqlText = 'SELECT * FROM koalas;';
+    pool.query(sqlText)
+    .then((dbResult) => {
+        console.log(`${dbResult.rows.length} rows to send.`)
+        res.send(dbResult.rows);
+    })
+    .catch((dbErr) => {
+        console.error(dbErr);
+        res.sendStatus(500);
+    });
+});
 
 // POST
 koalaRouter.post('/', (req, res) => {
