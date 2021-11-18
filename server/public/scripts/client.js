@@ -22,6 +22,15 @@ function clearInputs(){
   $('#notesIn').val('');
 }
 
+// clear koalaInputs
+function clearInputs(){
+  $('#nameIn').val('');
+  $('#ageIn').val('');
+  $('#genderIn').val('');
+  $('#readyForTransferIn').val('');
+  $('#notesIn').val('');
+}
+
 function getKoalas(){
   console.log( 'in getKoalas' );
   // ajax call to server to get koalas
