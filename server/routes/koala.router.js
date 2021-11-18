@@ -5,10 +5,22 @@ const koalaRouter = express.Router();
 
 
 // GET
-
+koalaRouter.get('/', (req, res) => {
+    console.log('GET /koalas');
+    const sqlText = 'SELECT * FROM koalas;';
+    pool.query(sqlText)
+    .then((dbResult) => {
+        console.log(`${dbResult.rows.length} rows to send.`)
+        res.send(dbResult.rows);
+    })
+    .catch((dbErr) => {
+        console.error(dbErr);
+        res.sendStatus(500);
+    });
+});
 
 // POST
-router.post('/', (req, res) => {
+koalaRouter.post('/', (req, res) => {
     console.log('POST /koalas');
     console.log('req.body:', req.body);
     const newKoala = req.body;
