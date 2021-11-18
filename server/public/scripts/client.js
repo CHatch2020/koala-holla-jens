@@ -34,7 +34,7 @@ function getKoalas(){
         <td>${koala.name}</td>
         <td>${koala.age}</td>
         <td>${koala.gender}</td>
-        <td>${koala.readyForTransfer}</td>
+        <td>${koala.ready_to_transfer}</td>
         <td>${koala.notes}</td>
         <td>
           <button class="update-btn" data-id="${koala.id}">Ready for Transfer</button>
@@ -54,7 +54,7 @@ function saveKoala(){
     name: $('#nameIn').val(),
     age: $('#ageIn').val(),
     gender: $('#genderIn').val(),
-    readyToTransfer: $('#readyToTransferIn').val(),
+    ready_to_transfer: $('#readyForTransferIn').val(),
     notes: $('#notesIn').val()
   }
   $.ajax({
