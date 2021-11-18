@@ -4,14 +4,10 @@ $( document ).ready( function(){
   console.log( 'JQ' ); 
   // load existing koalas on page load
   getKoalas();
-  // Adds a click listener to detect when delete button is clicked.
-
     // TODO make sure to add class delete-btn, to the remove button.
   $('#viewKoalas').on('click', '.delete-btn', deleteKoala);
   $('#viewKoalas').on('click', '.update-btn', updateKoala);
-
-  // TODO make sure to add class delete-btn, to the remove button.
-  $('#addButton').on('click', saveKoala)
+  $('#addButton').on('click', saveKoala);
 
 }); // end doc ready
 
