@@ -6,15 +6,9 @@ $( document ).ready( function(){
   setupClickListeners();
   // load existing koalas on page load
   getKoalas();
-
-  // Adds a click listener to detect when delete button is clicked.
-
-    // TODO make sure to add class delete-btn, to the remove button.
   $('#viewKoalas').on('click', '.delete-btn', deleteKoala);
   $('#viewKoalas').on('click', '.update-btn', updateKoala);
-
-  // TODO make sure to add class delete-btn, to the remove button.
-  $('#addButton').on('click', saveKoala)
+  $('#addButton').on('click', saveKoala);
 
 }); // end doc ready
 
@@ -27,14 +21,6 @@ function clearInputs(){
   $('#notesIn').val('');
 }
 
-// clear koalaInputs
-function clearInputs(){
-  $('#nameIn').val('');
-  $('#ageIn').val('');
-  $('#genderIn').val('');
-  $('#readyForTransferIn').val('');
-  $('#notesIn').val('');
-}
 
 function getKoalas(){ 
   console.log( 'in getKoalas' );
@@ -56,7 +42,7 @@ function getKoalas(){
           <button class="ready-for-transfer-btn">Ready for Transfer</button>
         </td>
         <td>
-          <button class="delete-btn">delete</button>
+          <button class="delete-btn" data-id="${koala.id}">delete</button>
         </td>
       </tr>
       `);
