@@ -51,7 +51,7 @@ function deleteKoala( newKoala ){
     url: `/koalas/${koalaId}`
   }).then(function(response) {
     console.log('response', response);
-    // TODO refreshKoalas();
+    // TODO refreshKoalas(); 
   }).catch(function(error){
     console.log('error: ', error);
   });
