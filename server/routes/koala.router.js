@@ -63,7 +63,7 @@ koalaRouter.put('/:id', (req, res) => {
     transfer,
     update
   ]
-  pool.query(sqlText, SqlValues)
+  pool.query(sqlText, sqlValues)
     .then((dbRes) => {
       res.sendStatus(201);
     }).catch((dbErr) => {
