@@ -8,7 +8,7 @@ const koalaRouter = express.Router();
 
 
 // POST
-router.post('/', (req, res) => {
+koalaRouter.post('/', (req, res) => {
     console.log('POST /koalas');
     console.log('req.body:', req.body);
     const newKoala = req.body;
@@ -37,7 +37,26 @@ router.post('/', (req, res) => {
 });
 
 // PUT
-
+koalaRouter.put('/:id', (req, res) => {
+  console.log('req.params:', req.params);
+  const update = req.params.id;
+  const transfer = 'Y';
+  const sqlText = `
+  UPDATE "koalas"
+  SET "ready_to_transfer"=$1
+  WHERE "id"=$2
+  `;
+  const sqlValues = [
+    transfer,
+    update
+  ]
+  pool.query(sqlText, SqlValues)
+    .then((dbRes) => {
+      res.sendStatus(201);
+    }).catch((dbErr) => {
+      res.sendStatus(500);
+    })
+})
 
 // DELETE
 
