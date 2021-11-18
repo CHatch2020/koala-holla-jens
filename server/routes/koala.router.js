@@ -26,8 +26,8 @@ koalaRouter.post('/', (req, res) => {
     console.log('req.body:', req.body);
     const newKoala = req.body;
     const sqlText = `
-      INSERT INTO "songs"
-        ("name", "age", "gender", "readyForTransfer", "notes")
+      INSERT INTO "koalas"
+        ("name", "age", "gender", "ready_to_transfer", "notes")
       VALUES
         ($1, $2, $3, $4, $5);
     `;
@@ -35,7 +35,7 @@ koalaRouter.post('/', (req, res) => {
       newKoala.name,
       newKoala.age,
       newKoala.gender,
-      newKoala.readyForTransfer,
+      newKoala.ready_to_transfer,
       newKoala.notes
     ];
     pool.query(sqlText, sqlValues)
