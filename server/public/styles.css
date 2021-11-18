@@ -1,5 +1,7 @@
+/* Other styles */
 body {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding-bottom: 25px;
 }
 
 img {
@@ -10,22 +12,80 @@ header {
     background-color: #0b8eab;
     color: white;
     padding: 15px;
+    border: 2px solid #04323a;
+    border-radius: 5px;
 }
 
+.subtitle {
+    display: inline-flex;
+    margin: 20px 0 7vh 45.5%;
+    text-align: center;
+    border-bottom: 3px solid #955b3e;
+}
+
+/* Table styles */
 #koala-table {
     text-align: center;
 }
 table {
     display: inline-block;
-    justify-content: center;
     border-collapse: collapse;
+    background-color: #e7f7fa;
+    animation-name: fadeIn;
+    animation-duration: 4.5s;
+    animation-fill-mode: both;
 }
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid #385a60;
   }
 th {
     height: 50px;
 }
 th, td {
     padding: 10px;
+}
+
+/* Input styles */
+#addKoala {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+#addButton {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #0b8eab;
+    color: white;
+    border-color: #04323a;
+    font-size: 15px;
+    margin-left: 1rem;
+}
+input[type=text] {
+    padding:10px;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius: 10px;
+}
+
+/* Button styles */
+.delete-btn {
+    background-color: rgb(224, 93, 93);
+    color: white;
+    border-radius: 15px;
+    border-color: rgb(139, 16, 16);
+    padding: 5px;
+}
+
+.update-btn {
+    background-color: #378a9c;
+    color: white;
+    border-radius: 15px;
+    border-color: #04323a;
+    padding: 5px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
