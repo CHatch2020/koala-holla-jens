@@ -9,7 +9,7 @@ const pool = require('../modules/pool');
 
 
 // POST
-router.post('/', (req, res) => {
+koalaRouter.post('/', (req, res) => {
     console.log('POST /koalas');
     console.log('req.body:', req.body);
     const newKoala = req.body;
