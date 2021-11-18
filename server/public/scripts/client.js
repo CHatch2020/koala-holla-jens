@@ -62,7 +62,7 @@ function deleteKoala( newKoala ){
   }).then(function(response) {
     console.log('response', response);
     // TODO refreshKoalas(); 
-  }).catch(function(error){
+  }).catch(function(error) {
     console.log('error: ', error);
   });
 }
