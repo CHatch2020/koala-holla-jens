@@ -8,9 +8,14 @@ $( document ).ready( function(){
   getKoalas();
 
   // Adds a click listener to detect when delete button is clicked.
+
+    // TODO make sure to add class delete-btn, to the remove button.
+  $('#viewKoalas').on('click', '.delete-btn', deleteKoala);
+  $('#viewKoalas').on('click', '.update-btn', updateKoala);
+
   // TODO make sure to add class delete-btn, to the remove button.
   $('#addButton').on('click', saveKoala)
-  $('body').on('click', '.delete-btn', deleteKoala);
+
 }); // end doc ready
 
 // clear koalaInputs
@@ -93,4 +98,18 @@ function deleteKoala( newKoala ){
   }).catch(function(error) {
     console.log('error: ', error);
   });
-}
+}; // end deleteKoala
+
+// update the inputs
+function updateKoala(){
+  const update = $(this).data('id');
+  $.ajax({
+    type: 'PUT',
+    url: `/koalas/${update}`
+  }).then((res) => {
+    console.log(res);
+    //will be the get function
+  }).catch((err) => {
+    console.log(err);
+  })
+}; // end updateKoala
