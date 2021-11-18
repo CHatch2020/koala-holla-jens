@@ -63,8 +63,8 @@ function saveKoala(){
     data: newKoala
   }).then((response) => {
     console.log('POST /koalas succeeded')
-    clearInputs();
     getKoalas();
+    clearInputs();
   });
 
 }
